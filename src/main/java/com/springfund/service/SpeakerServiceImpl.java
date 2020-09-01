@@ -8,9 +8,13 @@ import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository repository=new HibernateSpeakerRepositoryImpl();
+    private SpeakerRepository repository;
     public List<Speaker> findall()
     {
         return repository.findall();
+    }
+
+    public void setRepository(SpeakerRepository repository) {
+        this.repository = repository;
     }
 }

@@ -1,3 +1,5 @@
+import com.springfund.repository.HibernateSpeakerRepositoryImpl;
+import com.springfund.repository.SpeakerRepository;
 import com.springfund.service.SpeakerService;
 import com.springfund.service.SpeakerServiceImpl;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +11,14 @@ public class AppConfig {
     @Bean(name="speakerService")
     public SpeakerService getSpeakerService()
     {
-        return new SpeakerServiceImpl();
+        SpeakerServiceImpl service=new SpeakerServiceImpl();
+        service.setRepository(getSpeakerRepository());
+        return service;
+    }
+
+    @Bean(name="speakerRepository")
+    public SpeakerRepository getSpeakerRepository()
+    {
+            return new HibernateSpeakerRepositoryImpl();
     }
 }
