@@ -3,6 +3,7 @@ package com.springfund.service;
 import com.springfund.model.Speaker;
 import com.springfund.repository.HibernateSpeakerRepositoryImpl;
 import com.springfund.repository.SpeakerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -10,8 +11,14 @@ public class SpeakerServiceImpl implements SpeakerService {
 
     private SpeakerRepository repository;
 
+    public  SpeakerServiceImpl()
+    {
+       System.out.println("Inside no args constructor");
+    }
+
     public SpeakerServiceImpl(SpeakerRepository speakerRepository)
     {
+        System.out.println("Inside repo constructor");
         repository=speakerRepository;
     }
 
@@ -20,6 +27,7 @@ public class SpeakerServiceImpl implements SpeakerService {
         return repository.findall();
     }
 
+    @Autowired
     public void setRepository(SpeakerRepository repository) {
         this.repository = repository;
     }
