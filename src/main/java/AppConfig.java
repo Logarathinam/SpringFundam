@@ -2,17 +2,20 @@ import com.springfund.repository.HibernateSpeakerRepositoryImpl;
 import com.springfund.repository.SpeakerRepository;
 import com.springfund.service.SpeakerService;
 import com.springfund.service.SpeakerServiceImpl;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class AppConfig {
 
     @Bean(name="speakerService")
+    @Scope(value = BeanDefinition.SCOPE_SINGLETON)
     public SpeakerService getSpeakerService()
     {
-        SpeakerServiceImpl service=new SpeakerServiceImpl();
-        service.setRepository(getSpeakerRepository());
+        SpeakerServiceImpl service=new SpeakerServiceImpl(getSpeakerRepository());
+        //service.setRepository(getSpeakerRepository());
         return service;
     }
 
